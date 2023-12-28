@@ -43,3 +43,15 @@ $body = array(
 header('Content-Type: application/json');
 die(json_encode($body));
 ```
+
+There's also a method to check if a passed parameter is a valid http status code based on this.
+```php
+<?php
+use iRAP\Http\HttpCode;
+
+if (HttpCode::isValid(404)) {
+    echo "Valid HTTP status code";
+} else {
+    echo "Invalid HTTP status code";
+}
+```
