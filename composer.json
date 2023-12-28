@@ -9,6 +9,10 @@
         {
             "name": "iRAP Admin",
             "email": "it.admin@irap.org"
+        },
+        {
+            "name": "Samrat Rai",
+            "email": "samrat.rai@irap.org"
         }
     ],
     "require": {
