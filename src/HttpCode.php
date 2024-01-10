@@ -9,6 +9,8 @@
 namespace iRAP\Http;
 
 
+use ReflectionClass;
+
 class HttpCode
 {
     /**
@@ -107,13 +109,19 @@ class HttpCode
      * behaviours. However, some Web applications and frameworks use the 302 status code as 
      * if it were the 303.
      */
-    const MOVED_TEMPORARILY = 302;
+    const FOUND = 302;
     
     
     /**
-     * Alias for MOVED_TEMPORARILY
+     * Alias for FOUND
      */
-    const REDIRECT_TERMPORARY = 302;
+    const REDIRECT_TEMPORARY = 302;
+
+
+    /**
+     * Alias for FOUND
+     */
+    const MOVED_TEMPORARILY = 302;
     
     
     /**
@@ -348,6 +356,11 @@ class HttpCode
      * (e.g., a PROPPATCH).
      */
     const FAILED_DEPENDENCY = 424;
+
+    /**
+     * Indicates that the server is unwilling to risk processing a request that might be replayed.
+     */
+    const TOO_EARLY = 425;
     
     
     /**
@@ -462,6 +475,19 @@ class HttpCode
      * Internet access via a Wi-Fi hotspot).
      */
     const NETWORK_AUTHENTICATION_REQUIRED = 511;
+
+    /**
+     * Check if it's a valid http status codes
+     * @param int|string $codeToCheck
+     * @return bool
+     */
+    public static function isValid($codeToCheck): bool
+    {
+        $c = new ReflectionClass(get_class());
+        $statusCodes = $c->getConstants(); // class constants
+
+        return in_array($codeToCheck, $statusCodes);
+    }
 }
 
 
