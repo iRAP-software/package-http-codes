@@ -483,7 +483,8 @@ class HttpCode
      */
     public static function isValid($codeToCheck): bool
     {
-        $c = new ReflectionClass(get_class($this));
+        $obj = new HttpCode();
+        $c = new ReflectionClass(get_class($obj));
         $statusCodes = $c->getConstants(); // class constants
 
         return in_array($codeToCheck, $statusCodes);
